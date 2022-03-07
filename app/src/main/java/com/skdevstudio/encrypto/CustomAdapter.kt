@@ -1,6 +1,7 @@
 package com.skdevstudio.encrypto
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -16,6 +17,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import java.security.MessageDigest
 import java.util.*
@@ -65,7 +68,7 @@ class CustomAdapter(context: Context,accountType : ArrayList<String>,username : 
         holder.accountTypeTextView.text = accountType.get(position)
         holder.usernameTextView.text = "Username : ${username.get(position)}"
         holder.passwordTextView.text = "Password :  ${password.get(position)}"
-        holder.accountTypeTextView.setOnClickListener {
+        holder.headerRv.setOnClickListener {
             if(!clickedExpand){
                 holder.usernameLayout.visibility = View.VISIBLE
                 holder.pwdLayout.visibility= View.VISIBLE
@@ -77,24 +80,30 @@ class CustomAdapter(context: Context,accountType : ArrayList<String>,username : 
             }
         }
 
+        holder.editBtn.setOnClickListener {
+            val intent : Intent = Intent(context,AddIds::class.java)
+            intent.putExtra("AccountType",accountType.get(position))
+            context.startActivity(intent)
+        }
+
         holder.showPwd.setOnClickListener {
             if(!showPwdClicked){
                 holder.passwordTextView.text = "Password :  ${decrypt(password.get(position),pvt_key)}"
-                holder.copiedText.text = "Password will be decrypted in : 5:00 Seconds!"
+                holder.copiedText.text = "Password will be encrypted in : 5:00 Seconds!"
                 showPwdClicked = true
                 holder.copiedText.visibility = View.VISIBLE
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
-                        holder.copiedText.text = "Password will be decrypted in : 4:00 Seconds!"
+                        holder.copiedText.text = "Password will be encrypted in : 4:00 Seconds!"
                         Handler(Looper.getMainLooper()).postDelayed(
                             {
-                                holder.copiedText.text = "Password will be decrypted in : 3:00 Seconds!"
+                                holder.copiedText.text = "Password will be encrypted in : 3:00 Seconds!"
                                 Handler(Looper.getMainLooper()).postDelayed(
                                     {
-                                        holder.copiedText.text = "Password will be decrypted in : 2:00 Seconds!"
+                                        holder.copiedText.text = "Password will be encrypted in : 2:00 Seconds!"
                                         Handler(Looper.getMainLooper()).postDelayed(
                                             {
-                                                holder.copiedText.text = "Password will be decrypted in : 1:00 Seconds!"
+                                                holder.copiedText.text = "Password will be encrypted in : 1:00 Seconds!"
                                                 Handler(Looper.getMainLooper()).postDelayed(
                                                     {
                                                         holder.copiedText.visibility = View.GONE
@@ -143,6 +152,8 @@ class CustomAdapter(context: Context,accountType : ArrayList<String>,username : 
         var showPwd : ImageButton = itemView.findViewById(R.id.showPasswordBtn)
         var copyUsername : ImageButton = itemView.findViewById(R.id.copyUsernameBtn)
         var copiedText : TextView = itemView.findViewById(R.id.copied)
+        var editBtn : ImageButton = itemView.findViewById(R.id.editBtn)
+        var headerRv : LinearLayout = itemView.findViewById(R.id.headerRv)
 
         init {
             itemView.setOnClickListener {

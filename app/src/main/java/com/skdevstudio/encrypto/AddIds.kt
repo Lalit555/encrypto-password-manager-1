@@ -1,6 +1,7 @@
 package com.skdevstudio.encrypto
 
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
@@ -18,12 +19,20 @@ class AddIds : AppCompatActivity() {
     private lateinit var binding: ActivityAddIdsBinding
     private var AES : String= "AES"
     private var pvt_key : String = "3xh2B0l6v6VpCWr5T4CHBA=="
+    private var toUpdate : String = "default" 
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddIdsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        var intent = intent
+        if(intent.getStringExtra("AccountType") != null){
+            toUpdate = intent.getStringExtra("AccountType")!!
+            binding.accountType.setText(toUpdate)
+            binding.accountType.isEnabled = false
+        }
 
         binding.addData.setOnClickListener {
             addData()
@@ -52,23 +61,35 @@ class AddIds : AppCompatActivity() {
             cv.put("USERNAME",binding.username.text.toString())
             cv.put("USER_PASSWORD",encrypt(binding.password.text.toString(),pvt_key))
             var result : Int
-            result = db.insert("USERDATA",null,cv).toInt()
+
+            if(intent.getStringExtra("AccountType") != null){
+
+                toUpdate = intent.getStringExtra("AccountType")!!
+                binding.accountType.setText(toUpdate)
+                binding.accountType.isEnabled = false
+                result = db.update("USERDATA",cv, "ACCOUNT_TYPE=?", arrayOf(toUpdate))
+                Toast.makeText(this, "Updated Successfully!", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this,ShowIDs::class.java))
+                finish()
+                db.close()
+
+            }else{
+
+                result = db.insert("USERDATA",null,cv).toInt()
+                Toast.makeText(this, "Stored Credentials Securely!", Toast.LENGTH_SHORT).show()
+            }
 
             if(result == -1){
                 Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show()
             }else{
-
                 binding.accountType.text?.clear()
                 binding.username.text?.clear()
                 binding.password.text?.clear()
-
-                Toast.makeText(this, "Stored Credentials Securely!", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     //AES
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun encrypt(Data : String, pwd : String): String {

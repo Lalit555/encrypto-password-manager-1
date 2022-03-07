@@ -1,7 +1,10 @@
 package com.skdevstudio.encrypto
 
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -18,12 +21,14 @@ class ShowIDs : AppCompatActivity() {
     private lateinit var username : ArrayList<String>
     private lateinit var password : ArrayList<String>
     private lateinit var customAdapter: CustomAdapter
+    private lateinit var handler: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShowIdsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        autoExit()
 
         accountType = ArrayList()
         username = ArrayList()
@@ -115,6 +120,13 @@ class ShowIDs : AppCompatActivity() {
         Toast.makeText(this, "$str", Toast.LENGTH_SHORT).show()
     }
 
+    private fun autoExit(){
+        handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            startActivity(Intent(this,BiometricActivity::class.java))
+            finish()
+        },5000)
+    }
 }
 
 //avoid fake data

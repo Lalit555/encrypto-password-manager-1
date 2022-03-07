@@ -7,6 +7,8 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.View
@@ -39,11 +41,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-    public fun toast(msg : String){
-        Toast.makeText(this,msg,Toast.LENGTH_LONG).show()
-    }
-
 }
 
 

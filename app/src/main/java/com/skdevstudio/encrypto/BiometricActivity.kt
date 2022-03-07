@@ -30,7 +30,6 @@ class BiometricActivity : AppCompatActivity() {
         supportActionBar?.title = "Biometric"
 
         val intent = Intent(this, ShowIDs::class.java)
-        val mediaPlayer = MediaPlayer.create(this, R.raw.fp_done_audio)
 
 //        ************* Biometric *********************
 
@@ -51,7 +50,6 @@ class BiometricActivity : AppCompatActivity() {
 
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
-                mediaPlayer?.start()
                 toast("Success!")
                 binding.fpDone.visibility = View.VISIBLE
                 binding.fpimg.visibility = View.GONE
