@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,AddIds::class.java))
         }
         binding.showCredentialsBtn.setOnClickListener{
-            startActivity(Intent(this,ShowIDs::class.java))
+            startActivity(Intent(this,BiometricActivity::class.java))
         }
 
     }

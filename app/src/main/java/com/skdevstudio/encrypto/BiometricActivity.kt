@@ -29,7 +29,7 @@ class BiometricActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Biometric"
 
-        val intent = Intent(this, AddIds::class.java)
+        val intent = Intent(this, ShowIDs::class.java)
         val mediaPlayer = MediaPlayer.create(this, R.raw.fp_done_audio)
 
 //        ************* Biometric *********************
@@ -59,8 +59,9 @@ class BiometricActivity : AppCompatActivity() {
                 Handler(Looper.getMainLooper()).postDelayed(
                     {
                         binding.fpDone.visibility = View.GONE
+                        intent.putExtra("FpStatus","YES")
                         startActivity(intent)
-                        finishAffinity()
+                        finish()
                     },
                     1200 // value in milliseconds
                 )

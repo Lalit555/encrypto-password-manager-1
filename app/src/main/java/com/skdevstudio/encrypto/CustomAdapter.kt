@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import java.security.MessageDigest
@@ -182,6 +184,4 @@ class CustomAdapter(context: Context,accountType : ArrayList<String>,username : 
         var encValueStr = Base64.getEncoder().encodeToString(encVal)
         return encValueStr
     }
-
-
 }

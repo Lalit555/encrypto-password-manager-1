@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:animateLayoutChanges="true"
-    android:background="@drawable/gradient"
     tools:context=".ShowIDs">
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

@@ -1,12 +1,15 @@
 package com.skdevstudio.encrypto
 
 import android.database.Cursor
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.skdevstudio.encrypto.databinding.ActivityAddIdsBinding
+import androidx.recyclerview.widget.RecyclerView
 import com.skdevstudio.encrypto.databinding.ActivityShowIdsBinding
+
 
 class ShowIDs : AppCompatActivity() {
 
@@ -38,6 +41,7 @@ class ShowIDs : AppCompatActivity() {
         var helper = DBHelper(applicationContext)
         var db = helper.readableDatabase
 
+
         var cursor : Cursor? = null
         if(db != null){
             cursor = db.rawQuery(query,null)
@@ -57,13 +61,61 @@ class ShowIDs : AppCompatActivity() {
         customAdapter = CustomAdapter(this,accountType,username,password)
         customAdapter.setOnItemClickListener(object : CustomAdapter.onItemClickListner{
             override fun onItemClick(position: Int) {
+
             }
         })
 
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(4, ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+
+                val builder = AlertDialog.Builder(this@ShowIDs)
+                builder.setMessage("Are you sure you want to Delete?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes") { dialog, id ->
+                        toast("Deleted")
+                        var accountTypeToDel : String= accountType[viewHolder.adapterPosition]
+                        var str : () -> String = {accountTypeToDel}
+                        if(db != null){
+                            cursor = db.rawQuery("DELETE FROM USERDATA WHERE ACCOUNT_TYPE = ?",
+                                arrayOf(
+                                    accountTypeToDel
+                                ))
+                        }
+                        dialog.dismiss()
+                        val intent = intent
+                        finish()
+                        startActivity(intent)
+                        cursor?.getString(1)
+                    }
+                    .setNegativeButton("No") { dialog, id ->
+                        val intent = intent
+                        finish()
+                        startActivity(intent)
+                        dialog.dismiss()
+                    }
+                val alert = builder.create()
+                alert.show()
+
+
+            }
+        }).attachToRecyclerView(binding.credentialDataRv)
+
     }
 
-    public fun toast(str : String){
+    private fun toast(str : String){
         Toast.makeText(this, "$str", Toast.LENGTH_SHORT).show()
     }
 
 }
+
+//avoid fake data
+//update option
