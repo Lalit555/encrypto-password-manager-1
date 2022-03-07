@@ -26,11 +26,10 @@ class BiometricActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityBiometricBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
         supportActionBar?.title = "Biometric"
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, AddIds::class.java)
         val mediaPlayer = MediaPlayer.create(this, R.raw.fp_done_audio)
 
 //        ************* Biometric *********************
