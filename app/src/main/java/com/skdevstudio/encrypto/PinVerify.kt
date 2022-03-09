@@ -14,7 +14,7 @@ class PinVerify : AppCompatActivity() {
         binding = ActivityPinVerifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.root.setOnClickListener {
+        binding.verifyPin.setOnClickListener {
             startActivity(Intent(this,MainActivity::class.java))
             finishAffinity()
         }
