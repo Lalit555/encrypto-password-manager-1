@@ -33,7 +33,6 @@ class AddIds : AppCompatActivity() {
             binding.accountType.setText(toUpdate)
             binding.accountType.isEnabled = false
         }
-
         binding.addData.setOnClickListener {
             addData()
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.skdevstudio.encrypto" >
+    package="com.skdevstudio.encrypto">
 
     <application
         android:allowBackup="true"
@@ -8,15 +8,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Encrypto" >
+        android:theme="@style/Theme.Encrypto">
+        <activity
+            android:name=".SetUserKey"
+            android:exported="false" />
         <activity
             android:name=".PinVerify"
             android:exported="false" />
         <activity
             android:name=".BiometricActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SetUserKey"
             android:exported="false" />
         <activity
             android:name=".AddIds"
@@ -27,7 +27,7 @@
 
         <receiver
             android:name=".WidgetOne"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -42,13 +42,17 @@
             android:exported="false" />
         <activity
             android:name=".SplashScreen"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

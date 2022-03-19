@@ -68,14 +68,17 @@ class CustomAdapter(context: Context,accountType : ArrayList<String>,username : 
         holder.accountTypeTextView.text = accountType.get(position)
         holder.usernameTextView.text = "Username : ${username.get(position)}"
         holder.passwordTextView.text = "Password :  ${password.get(position)}"
+        holder.editBtn.visibility = View.GONE
         holder.headerRv.setOnClickListener {
             if(!clickedExpand){
                 holder.usernameLayout.visibility = View.VISIBLE
                 holder.pwdLayout.visibility= View.VISIBLE
+                holder.editBtn.visibility = View.VISIBLE
                 clickedExpand = true
             } else{
                 holder.usernameLayout.visibility = View.GONE
                 holder.pwdLayout.visibility= View.GONE
+                holder.editBtn.visibility = View.GONE
                 clickedExpand = false
             }
         }

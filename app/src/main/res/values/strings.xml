@@ -23,4 +23,16 @@
     <string name="from">From</string>
     <string name="sk_developers_studio">SK Developers Studio</string>
     <string name="authenticate">Authenticate</string>
+    <string name="pin_must_be_6_digit_numeric">Pin Must Be 6 Digit Numeric</string>
+    <string name="_3">3</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_0">0</string>
+    <string name="please_enter_your_pin_to_unlock">Please enter your Pin to unlock</string>
 </resources>

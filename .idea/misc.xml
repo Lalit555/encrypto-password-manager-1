@@ -7,15 +7,16 @@
         <entry key="app/src/main/res/drawable/btnbg.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.163" />
         <entry key="app/src/main/res/drawable/gradient.xml" value="0.163" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.195" />
         <entry key="app/src/main/res/drawable/ic_baseline_content_copy_24.xml" value="0.1045" />
         <entry key="app/src/main/res/drawable/icon_fpn.xml" value="0.22708333333333333" />
         <entry key="app/src/main/res/drawable/inputbg.xml" value="0.163" />
         <entry key="app/src/main/res/drawable/transulentwhitebg.xml" value="0.163" />
-        <entry key="app/src/main/res/layout/activity_add_ids.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_add_ids.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_biometric.xml" value="0.12719298245614036" />
         <entry key="app/src/main/res/layout/activity_intermediate.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_pin_verify.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/layout/activity_pin_verify.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_set_user_key.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/activity_show_ids.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.21770833333333334" />
